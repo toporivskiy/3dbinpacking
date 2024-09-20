@@ -90,6 +90,15 @@ class Bin:
 
         return set_to_decimal(total_weight, self.number_of_decimals)
 
+    def get_fitted_volume(self):
+        return sum(item.get_volume() for item in self.items)
+    
+    def get_unfitted_volume(self):
+        return sum(unfitted_item.get_volume() for unfitted_item in self.unfitted_items)
+    
+    def get_total_bin_space_used(self):
+        return set_to_decimal(self.get_fitted_volume()/self.get_volume(), self.number_of_decimals)
+
     def put_item(self, item, pivot):
         fit = False
         valid_item_position = item.position
